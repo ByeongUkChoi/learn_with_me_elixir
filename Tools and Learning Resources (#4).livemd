@@ -18,3 +18,14 @@
 * [culttt.com](https://www.culttt.com/)의 많은 유용한 블로그 게시물
 * Ulisses Almeida의 책 [Learn Functional Programming with Elixir](https://www.amazon.com/Learn-Functional-Programming-Elixir-Foundations/dp/168050245X/ref=sr_1_2?ie=UTF8&qid=1537479803&sr=8-2&keywords=Learn+Functional+Programming+with+Elixir)
 * 데이브 토마스의 책 [Programming Elixir 1.6](https://www.amazon.com/Programming-Elixir-1-6-Functional-Concurrent/dp/1680502999/ref=sr_1_1?ie=UTF8&qid=1537479856&sr=8-1&keywords=Programming+Elixir+1.6)
+
+## 심화 정보
+
+최종적으로 엘릭서의 심화 기능과 피닉스 프레임워크에 대해 배울 수 있는 몇가지 자료들입니다.
+
+* Andre Albuquerque와 Daniel Caixinha의 책 [Mastering Elixir](https://www.amazon.com/Mastering-Elixir-distributed-fault-tolerant-applications/dp/1788472675/ref=sr_1_1_sspa?ie=UTF8&qid=1537478604&sr=8-1-spons&keywords=Mastering+Elixir&psc=1)
+* João Gonçalves의 영상 Advanced Elixir and OTP은 Packt Press에서 출판하였고 [Safari Books Online](https://www.safaribooksonline.com/)에서 확인 할 수 있습니다.
+* Marc Sugiyama의 토크 컨퍼런스 영상 Rapid, scalable websites with Elixir and Phoenix. 2017년에 OSCon에서 진행되었으며, [Safari Books Online](https://www.safaribooksonline.com/)에서 확인 할 수 있습니다.
+* Saša Jurić의 책 Elixir in Action
+* Lance Halvorsen의 책 [Functional Web Development with Elixir, OTP, and Phoenix](https://www.amazon.com/Functional-Web-Development-Elixir-Phoenix/dp/1680502433/ref=sr_1_1?ie=UTF8&qid=1537479561&sr=8-1&keywords=Functional+Web+Development+with+Elixir%2C+OTP%2C+and+Phoenix)
+* Chris McCord, Bruce Tate 그리고 Jose Valim의 책 [Programming Phoenix 1.4](https://www.amazon.com/Programming-Phoenix-1-4-Productive-Reliable/dp/1680502263/ref=sr_1_1?ie=UTF8&qid=1537479904&sr=8-1&keywords=Programming+phoenix)
