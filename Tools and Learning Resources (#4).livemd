@@ -7,3 +7,14 @@
 ## 학습 자료
 
 저는 엘릭서를 독학하기 위해 다음 자료들을 보고 있습니다. 엘릭서에 대해 알기 위해서 다른 웹사이트와 기사들도 읽었지만, 아래는 정기적으로 읽을 자료들입니다. 다른 것들보다 저에게 더 유용할 수 있을 것입니다.
+
+## 기초 정보
+
+이것들은 제가 엘릭서의 기초를 독학하면서 사용한 자료들입니다.
+
+* 엘릭서 문서 (단순히 읽기 좋음). 언어의 기능들은 [시작 가이드](https://elixir-lang.org/getting-started/introduction.html)에 기술되어있고 표준 라이브러리와 엘릭서 API는 [공식 문서](https://hexdocs.pm/elixir/Kernel.html)에 기술되어있습니다.
+* Ben Marx, Bruce Tate 그리고 Jose valim의 책 [Adopting Elixir](https://www.amazon.com/Adopting-Elixir-Production-Ben-Marx/dp/1680502522/ref=sr_1_1?ie=UTF8&qid=1537478382&sr=8-1&keywords=Adopting+Elixir)
+* Painlessly Functional and Concurrent: Marc Sugiyama의 엘릭서 소개. 이 영상은 2016년 OSCon에서 진행된 영상으로 [Safari Books Online](https://www.safaribooksonline.com/)에서 확인 할 수 있습니다.
+* [culttt.com](https://www.culttt.com/)의 많은 유용한 블로그 게시물
+* Ulisses Almeida의 책 [Learn Functional Programming with Elixir](https://www.amazon.com/Learn-Functional-Programming-Elixir-Foundations/dp/168050245X/ref=sr_1_2?ie=UTF8&qid=1537479803&sr=8-2&keywords=Learn+Functional+Programming+with+Elixir)
+* 데이브 토마스의 책 [Programming Elixir 1.6](https://www.amazon.com/Programming-Elixir-1-6-Functional-Concurrent/dp/1680502999/ref=sr_1_1?ie=UTF8&qid=1537479856&sr=8-1&keywords=Programming+Elixir+1.6)
