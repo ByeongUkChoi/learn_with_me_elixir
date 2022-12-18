@@ -27,3 +27,31 @@ iex>
 ```
 
 엘릭서 구문과 표현식을 입력할 수 있고 그것들이 평가된 결과를 볼 수 있습니다. 곧 같이해 볼 것입니다. 이 환경을 종료하려면 Ctrl+C를 두 번 누르면 됩니다. 종료하는 방법이 약간 어색하지만, 그것이 일반적인 방법입니다.
+
+## 변수
+
+변수에 값을 할당하는 사소한 작업부터 시작해보겠습니다. IEx를 켜고 변수에 무언가를 할당합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> number = 10
+10
+iex> name = "Aethelstan"
+"Aethelstan"
+```
+
+첫 번째 구문에서는 정수 `10`을 변수 `number`에 할당하고 두 번째 구문에서는 문자열 `"Aethelstan"`를 변수 `name`에 할당합니다. 이것은 다른 언어의 할당과 매우 유사합니다.
+
+할당 구문으로 인한 IEx의 출력이 변수에 할당된 데이터와 같다는 것을 알 수 있습니다. 또한 변수 이름만 입력해도 데이터를 볼 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> number
+10
+iex> age
+** (CompileError) iex:4: undefined function age/0
+
+iex>
+```
