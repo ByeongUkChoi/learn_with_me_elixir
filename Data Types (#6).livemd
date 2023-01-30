@@ -315,3 +315,18 @@ iex> text = 'This is a character list'
 ```
 
 아래 컬렉션 타입 절에서 리스트를 소개할 것입니다.
+
+### 불리언
+
+대부분 프로그래밍 언어에서 불리언은 자체 타입입니다. 엘릭서도 그렇게 보이지만, 실제로 프로그래머는 다른 것에 대해 몰라도 불리언을 사용할 수 있습니다. 그러나 엘릭서는 실제로 그것을 다른 방식으로 저장합니다.
+
+불리언은 오직 `true`와 `false`만 가질 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> value = true    
+true                 
+iex> value = false   
+false 
+```
