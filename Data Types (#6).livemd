@@ -330,3 +330,22 @@ true
 iex> value = false   
 false 
 ```
+
+역시나 값이 불리언인지 확인하는 `is_boolean` 함수가 존재합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> is_boolean(true)
+true
+iex> is_boolean(false)
+true
+iex> is_boolean("true")
+false
+iex> is_boolean(5)
+false
+```
+
+이것이 불리언을 사용하기 위해 알아야 하는 모든 것입니다. C#이나 자바스크립트처럼 언어 전체에서 기본 불리언처럼 다뤄집니다. 더 읽을 필요 없이 이 정도면 충분합니다.
+
+그러나 엘릭서에서는 실제로 불리언 값을 아톰으로 저장합니다. `true`는 아톰 `:true`와 일치하고 `false`는 아톰 `:false`와 일치합니다. 불리언은 단지 아톰의 별칭입니다. 엘릭서에서 불리언은 `:true` 또는 `:false`의 특수한 타입의 아톰일 뿐입니다. 아톰은 고유한 값이고, 엘릭서에서의 데이터는 불변이므로 불리언 값을 가진 모든 변수는 아톰 테이블에서 두 개 중 하나입니다. 이는 좋고 간단하고 효율적입니다.
