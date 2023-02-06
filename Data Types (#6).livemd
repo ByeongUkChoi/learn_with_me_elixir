@@ -415,3 +415,34 @@ range와 마찬가지로 정규 표현식은 데이터에 접근할 수 없는 �
 사실 많은 내용이 있지 않습니다. 정규 표현식을 만들고 정규 표현식에 일치하는 기능을 호출하는 것만 알면 됩니다.
 
 정규 표현식은 유용하고 매우 강력하다고 생각하지만, 저는 작업하면서 사용할 기회가 많이 없습니다. 텍스트 매칭을 많이 해야 한다면 어느샌가 정규 표현식 전문가가 되어있을 것 같지만, 그렇진 않았습니다.
+
+엘릭서 정규 표현식은 Perl 표준(PCRE)을 따릅니다. 엘릭서 정규 표현식 기능은 얼랭 정규 표현식 기능 위에 구축되어 있으므로 두 언어의 정규 표현식은 매우 유사합니다.
+
+엘릭서 정규 표현식 리터럴은 "~r/[expression]/[modifiers]" 형식이며 "~r" 정규 표현식을 나타냅니다.
+
+이 정규 표현식은 하나 이상의 숫자 뒤에 "."가 오고 0개 이상의 숫자가 오는 것을 나타냅니다. 표현식의 시작 혹은 끝에 대한 구분이 없으므로 텍스트 중간에서도 이 패턴이 발생할 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> regex = ~r/[0-9]+\.[0-9]*/
+~r/[0-9]+\.[0-9]*/
+iex> Regex.match?(regex, "0")
+false
+iex> Regex.match?(regex, "0A")
+false
+iex> Regex.match?(regex, "0.")
+true
+iex> Regex.match?(regex, "0.4")
+true
+iex> Regex.match?(regex, "1230.4653")
+true
+iex> Regex.match?(regex, "1230.4e")
+true
+iex> Regex.match?(regex, "1230.e4")
+true
+iex> Regex.match?(regex, "a1230.e4")
+true
+iex> Regex.match?(regex, "a1230a.e4")
+false
+```
