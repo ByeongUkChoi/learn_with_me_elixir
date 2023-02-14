@@ -90,3 +90,47 @@ iex> rem(-100, 12)
 자바스크립트와 마찬가지로 엘릭서는 이중 등호(`==`)와 삼중 등호(`===`) 비교 연산자가 있습니다. 자바스크립트처럼 삼중 등호가 이중 등호보다 엄격하지만, 자바스크립트와는 다르게 엄격함의 차이가 작습니다.
 
 삼중 등호 연산자(`===`)는 비교 대상인 두 항목의 유형이 같은지와 유형이 같다면 정확하게 같은 값인지 테스트합니다. 몇 가지 예를 살펴보겠습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> "Bob" === 4
+false
+iex> 4 === 4
+true
+iex> "Bob" === "Bob"
+true
+iex> 4.0 === 4
+false
+iex> true === "true"
+false
+iex> 3.5 === :cheese
+false
+iex> :chees === :cheese
+false
+iex> :cheese === :cheese
+true
+```
+
+네, 아톰의 이름이 다르면 완전히 다른 두 개의 아톰이라는 것을 보여주기 위해 철자가 틀린 `:chees`를 두었습니다.
+
+이중 등호 연산자 (`==`)는 거의 똑같습니다. 차이점은 오직 부동 소수점과 정수를 서로 비교할 수 있도록 강제한다는 점입니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> 5 === 5.0
+false
+iex> 5 == 5.0
+true
+iex> 5 == 5.000000001
+false
+iex> "true" == true
+false
+iex> 1 == true
+false
+iex> 0 == false
+false
+```
+
+자바스크립트처럼 모든 규칙을 기억해야 하는 복잡한 일은 없습니다. 부동 소수점과 정수가 같은 수를 나타내는 경우 두 값이 같을 수 있다는 것을 허용하기만 하면 됩니다.
