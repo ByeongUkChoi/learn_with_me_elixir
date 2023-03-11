@@ -93,10 +93,83 @@ iex> <<1138::size(11)>>
 
 따라서 IEx는 항상 8비트의 모든 청크에 대해 바이트 값을 표시하고 `::size` 표기법을 사용하여 나머지 비트를 표시하는 것을 볼 수 있습니다.
 
-`::size` 연산은 비트 모양에 큰 차이를 만듭니다. 값에 필요한 크기보다 큰 크기를 >지정하면 앞의 비트가 0으로 설정됩니다. 따라서 `<<5::size(5)>>`는 `00101` 비트스>트링을, `<<5::size(3)>>`은 `101` 비트스트링을 생성합니다.
+`::size` 연산은 비트 모양에 큰 차이를 만듭니다. 값에 필요한 크기보다 큰 크기를 지정하면 앞의 비트가 0으로 설정됩니다. 따라서 `<<5::size(5)>>`는 `00101` 비트스트링을, `<<5::size(3)>>`은 `101` 비트스트링을 생성합니다.
 
-값에 필요한 크기보다 작은 크기를 지정하면 최상위 비트가 잘립니다. 따라서 `<<5::s
-ize(2)>>`는 앞의 `1`이 잘려 나갔으므로 비트스트링 `01`이 됩니다. IEx는 결과로 비트스트링 "<<1::size(2)>>"가 표시되는데, 이는 `01`에 해당합니다.
+값에 필요한 크기보다 작은 크기를 지정하면 최상위 비트가 잘립니다. 따라서 `<<5::size(2)>>`는 앞의 `1`이 잘려 나갔으므로 비트스트링 `01`이 됩니다. IEx는 결과로 비트스트링 "<<1::size(2)>>"가 표시되는데, 이는 `01`에 해당합니다.
 
-바이너리는 비트스트링의 서브타입이므로 모든 바이너리는 비트스트링입니다. 비트스>트링은 비트 수가 8로 나눠질 경우에만 바이너리로 간주합니다. 이는 "::size" 옵션을 사용하여 지정하는 경우에도 마찬가지입니다. 따라서 `<<4::size(8>>`과 `<<4::size(16)>>`은 비트스트링이면서 바이너리이지만, `<<4::size(7)>>`은 비트스트링일 뿐입니
-다.
+바이너리는 비트스트링의 서브타입이므로 모든 바이너리는 비트스트링입니다. 비트스트링은 비트 수가 8로 나눠질 경우에만 바이너리로 간주합니다. 이는 "::size" 옵션을 사용하여 지정하는 경우에도 마찬가지입니다. 따라서 `<<4::size(8)>>`과 `<<4::size(16)>>`은 비트스트링이면서 바이너리이지만, `<<4::size(7)>>`은 비트스트링일 뿐입니다.
+
+엘릭서는 `is_binary`와 `is_bitstring` 함수를 제공합니다.
+
+이 비트스트링은 비트 수를 8로 나눌 수 없기 때문에 바이너리가 아닙니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> is_binary(<<142, 2::size(3)>>)
+false
+iex> is_bitstring(<<142, 2::size(3)>>)
+true
+```
+
+모든 바이너리는 비트스트링이기도 합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> is_bitstring(<<142, 2>>)
+true
+iex> is_binary(<<142, 2>>)
+true
+```
+
+8로 나눌 수 있는 비트스트링은 바이너리이지만 그렇지 않은 것은 그냥 비트스트링입니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> <<4::size(8)>>
+<<4>>
+iex> is_binary(<<4::size(8)>>)
+true
+iex> is_bitstring(<<4::size(8)>>)
+true
+iex> is_binary(<<4::size(16)>>)
+true
+iex> is_bitstring(<<4::size(16)>>)
+true
+iex> is_binary(<<4::size(7)>>)
+false
+iex> is_bitstring(<<4::size(7)>>)
+true
+```
+
+문자열은 바이너리이므로 문자열은 바이너리인 동시에 비트스트링이기도 합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> is_binary("This is a string")
+true
+iex> is_bitstring("This is a string")
+true
+```
+
+다른 데이터 타입은 바이너리도 비트스트링도 아닙니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> is_binary(1.2)
+false
+iex> is_bitstring(1.2)
+false
+iex> is_binary(5)
+false
+iex> is_bitstring(5)
+false
+iex> is_binary(:atom)
+false
+iex> is_bitstring(:atom)
+false
+```
