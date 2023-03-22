@@ -80,3 +80,30 @@ iex> ~s(Captain Ahab)
 iex> ~s(This "string" contains "double quotes")
 "This \"string\" contains \"double quotes\""
 ```
+
+## 문자열 보간
+
+문자열 보간은 런타임에 평가될 문자열 리터럴에 표현식을 넣는 방법입니다. 결과는 문자열로 합쳐집니다. 이는 높은 가독성을 유지하면서 문자열을 구성하는 편리한 방법입니다.
+
+자바스크립트(ES6 이상)에는 문자열 보간 기능이 있습니다.
+
+```javascript
+"Next year, my dog will be ${dogAge + 1} years old"
+```
+
+C#에도 문자열 보간 기능이 있지만, 이는 최근에 추가된 기능(C# 6) 중 하나입니다.
+
+```csharp
+$"Next year, my dog will be {dog.Age + 1} years old"
+```
+
+엘릭서에서 문자열 보간은 문자열 내에서 "#{}" 표기법을 사용하여 수행할 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> name = "Bob"
+"Bob"
+iex> "Hello, my name is #{name}"
+"Hello, my name is Bob"
+```
