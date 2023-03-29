@@ -29,3 +29,47 @@ C#에서 함수 매개변수는 다른 모든 것과 마찬가지로 항상 정�
 모듈을 정의하는데 필요한 구문을 살펴봅시다. 모듈은 `defmodule` 키워드와 모듈 내용을 `do`와 `end` 사이에 넣어 정의합니다.
 
 모듈은 IEx에서 인라인으로 정의할 수 있지만, 그렇게 하는 것은 매우 지저분하고 번거롭습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> defmodule ExampleModule do
+...> end
+
+{:module, ExampleModule,
+ <<70, 79, 82, 49, 0, 0, 3, 36, 66, 69, 65, 77, 65, 116, 85, 56, 0, 0, 0, 127,
+   0, 0, 0, 12, 20, 69, 108, 105, 120, 105, 114, 46, 69, 120, 97, 109, 112, 108,
+   101, 77, 111, 100, 117, 108, 101, 8, 95, ...>>, nil}
+```
+
+대신에 모듈은 일반적으로 소스 코드 파일에 정의됩니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule ExampleModule do
+  
+end
+```
+
+그러면 이 "ExampleModule"이란 이름의 모듈의 본문은 `do` 키워드로 시작하여 `end` 키워드로 끝납니다.
+
+모듈의 네임스페이스는 "[namespace2].[module]" 또는 "[namespace1].[namespace2].[module]"로 지정할 수도 있습니다. 이렇게 하면 이름이 같은 모듈이 서로 다른 네임스페이스에 있을 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule Cars.Driving do
+  
+end
+```
+
+혹은
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule Vehicles.Cars.Driving do
+  
+end
+```
