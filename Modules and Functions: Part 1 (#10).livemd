@@ -73,3 +73,19 @@ defmodule Vehicles.Cars.Driving do
   
 end
 ```
+
+이것은 다음과 같습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule Cars do
+  defmodule Driving do
+  
+  end
+end
+```
+
+모듈은 단일파일에 정의해야 하며, 여러 소스 코드 파일에 나눌 수 없습니다. 그러나 단일 파일에 여러 모듈을 정의할 수는 있습니다.
+
+흥미로운 사실: 모듈 이름은 내부적으로(Erlang VM에서) 아톰으로 변환되고 그 앞에 "Elixir"가 추가됩니다. 따라서 `Stuff` 모듈은 실제로 내부적으로 `":Elixir.Stuff"`로 표시됩니다. (아톰에 공백이나 점 같은 특수문자가 포함될 때는 앞뒤로 따옴표를 붙여야 합니다.)
