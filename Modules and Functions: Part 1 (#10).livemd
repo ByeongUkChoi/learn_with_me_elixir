@@ -95,3 +95,39 @@ end
 ## 기명 함수
 
 엘릭서 함수는 일반적으로 이름이 지정되며, 이를 "기명 함수"라고 합니다. 함수는 `def` 키워드와 매개변수 리스트로 정의됩니다. 함수에는 함수의 내용을 포함하는 본문도 있습니다. 모듈과 마찬가지로 함수 본문은 `do` 키워드로 시작하고 `end` 키워드로 끝납니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule ExampleModule do
+  def do_something(parameter1, parameter2) do
+    
+  end
+end
+```
+
+위의 예제는 `ExampleModule` 모듈에서 `do_something` 함수를 정의합니다. 이 함수는 두 개의 매개변수 `parameter1`과 `parameter`를 받습니다. 함수 본문에 아무것도 넣지 않았기 때문에 아무것도 반환하지 않습니다.
+
+함수의 마지막 표현식의 값은 함수에서 반환되는 값입니다. 두 숫자를 더하는 예제 함수를 살펴보겠습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def sum(num1, num2) do
+    num1 + num2
+end
+```
+
+C#과 자바스크립트와는 다르게 `return` 키워드가 필요하지 않습니다. 마지막 구문의 값이 자동으로 함수에서 반환됩니다.
+
+전달된 매개변수를 반환하는 함수를 정의할 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def echo(parameter) do
+    parameter
+end
+```
+
+기명 함수는 항상 모듈의 컨텍스트에서 정의해야 합니다! 기명 함수는 모듈 외부에 존재할 수 없습니다.
