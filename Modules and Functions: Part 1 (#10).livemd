@@ -169,3 +169,23 @@ defmodule ExampleModule do
   end
 end
 ```
+
+에러가 발생할 것으로 예상했지만, 엘릭서는 두 번째 함수는 절대 사용되지 않는다는 경고만 표시한 채 모듈을 로드합니다. `do_something/1` 함수가 호출되면 정의된 함수의 첫 번째 인스턴스만 호출되고 두 번째 인스턴스는 무시됩니다. 흥미롭습니다.
+
+## 익명 함수
+
+익명 함수는 이름과 연결되지 않은 함수입니다. 여러 언어에서 "람다"라고 불리는 익명 함수는 정의하고 변수에 할당하거나 다른 함수에 전달하는 것이 일반적입니다.
+
+자바스크립트에서는 일반적으로 다음 예제와 같은 작업을 수행합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+var add = function(x, y) {
+	return x + y;
+};
+
+array.map(function(number) {
+	return number * 2;
+});
+```
