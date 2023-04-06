@@ -178,9 +178,7 @@ end
 
 자바스크립트에서는 일반적으로 다음 예제와 같은 작업을 수행합니다.
 
-<!-- livebook:{"force_markdown":true} -->
-
-```elixir
+```javascript
 var add = function(x, y) {
 	return x + y;
 };
@@ -189,3 +187,54 @@ array.map(function(number) {
 	return number * 2;
 });
 ```
+
+익명 함수가 생성되어 변수에 할당됩니다. 배열의 맵 함수와 같은 다른 함수에 전달할 수도 있습니다.
+
+ES6 람다 구문에서도 마찬가지입니다.
+
+```javascript
+const add = (x, y) => x + y;
+
+array.map(number => number * 2);
+```
+
+C#에는 최신 C#  코드에서 자주 사용되는 람다도 있습니다.
+
+```cs
+Func<int, int, int> add = (int x, int y) => x + y;
+
+var transformedList = list.Select(number => number * 2).ToList();
+```
+
+엘릭서에서 익명 함수는 `fn`으로 시작하고 `end`로 끝납니다. 함수의 매개변수와 본문은 `->`로 구분됩니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> add = fn (x, y) -> x + y end
+#Function<12.99386804/2 in :erl_eval.expr/5>
+```
+
+위의 함수는 두 개의 매개변수를 받아 두 매개변수의 합을 반환합니다.
+
+함수 매개변수 주위의 괄호는 생략할 수도 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> add = fn x, y -> x + y end
+#Function<12.99386804/2 in :erl_eval.expr/5>
+```
+
+익명 함수는 일반적으로 특정 상황에서만 적용되고 재사용 되지 않는 수명이 짧은 함수입니다. 여러 곳에서 동일한 익명 함수를 지정하는 경우 이를 기명 함수로 전환하는 것이 좋습니다.
+
+매개변수가 없는 익명 함수는 `fn`과 `->` 사이에 아무것도 넣지 않음으로써 정의할 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> hello = fn -> "hello" end
+#Function<20.99386804/0 in :erl_eval.expr/5>
+```
+
+위의 함수는 단순히 "Hello" 값을 반환합니다.
