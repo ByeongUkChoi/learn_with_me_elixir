@@ -238,3 +238,26 @@ iex> hello = fn -> "hello" end
 ```
 
 위의 함수는 단순히 "Hello" 값을 반환합니다.
+
+익명 함수는 일반적으로 단일 표현식을 포함하지만, 여러 표현식으로 함수를 정의할 수도 있습니다. 엘릭서의 다른 함수와 마찬가지라 마지막 표현식의 값은 함수에서 반환되는 값입니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> double_and_add = fn x ->
+...> d = x * 2
+...> d + 1
+...> end
+#Function<6.99386804/1 in :erl_eval.expr/5>
+```
+
+엘릭서는 `end` 키워드를 볼 때까지 함수가 끝나지 않았다는 것을 알고 있습니다. 세미콜론을 사용하여 두 표현식을 같은 줄에 넣을 수도 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> double_and_add = fn x -> d = x * 2; d + 1 end
+#Function<6.99386804/1 in :erl_eval.expr/5>
+```
+
+두 가지 표현식을 한 줄에 넣지 않는 것이 좋습니다. 읽기가 훨씬 더 어렵습니다. 실제로 함수가 단일 표현식보다 더 복잡하다면 기명 함수로 만드는 것을 고려할 수 있습니다. 단순하고 명확할수록 좋습니다.
