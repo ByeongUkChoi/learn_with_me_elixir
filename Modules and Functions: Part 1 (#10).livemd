@@ -412,3 +412,24 @@ iex> do_something = fn (x) -> x + 1 end
 iex> do_something.(3)
 4
 ```
+
+처음에 익명 함수와 기명 함수의 호출 구문 간의 차이가 정말 짜증났습니다. 그런 다음 이 구문이 익명 함수뿐만 아니라 변수에 바인딩된 기명 함수에도 실제로 적용됨을 깨달았습니다.
+
+이 예제에서는 인자 개수가 1인 동일한 값을 반환하는 echo라는 기명 함수를 만들었습니다. 점 없이 기명 함수를 호출할 수 있습니다. 캡처 연산자를 사용하여 함수를 변수에 할당하면, 점 표기법으로 호출해야 합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> ExampleModule.echo("Bob")
+"Bob"
+iex> echoFunc = &ExampleModule.echo/1
+&ExampleModule.echo/1
+iex> echoFunc("Bob")
+** (CompileError) iex:19: undefined function echoFunc/1
+
+iex> echoFunc.("Bob")
+"Bob"
+
+```
+
+함수 변수가 함수 호출을 위해 점 표기법을 사용해야 하는 정확한 이유는 확실하지 않지만, 동일한 네임스페이스에서 기명 함수와 변수를 혼동하지 않도록 하는 실용적인 이유가 있을 것입니다. 위의 예에서 점 표기법 없이 함수 변수를 호출하려고 하면 엘릭서는 변수로 인식하지 않고, 변수와 같은 이름의 함수를 찾으려고 시도합니다. 점 표기법은 엘릭서에게 이것이 변수이고 기명 함수가 아님을 나타내야 합니다.
