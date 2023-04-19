@@ -53,3 +53,30 @@ public List<int> DoSomething(int a, int b, int c, int d = 1)
 	return new List<int> {a, b, c, d};
 }
 ```
+
+30초 가량 검색해도 이 상황에서 엘릭서가 어떻게 동작하는지 알 수 없었기 때문에 이를 확인하기 위해 직접 사용해 보기로 했습니다. 엘릭서는 제가 예상한 대로 동작하지 않았습니다.
+
+엘릭서에서 다음 함수를 만들었습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def create_list(a, b \\ 1, c, d) do
+	[a, b, c, d]
+end
+```
+
+그런 다음 세 개의 매개변수를 사용하여 호출했습니다. 처음 세 개(a, b, c)를 채운 다음 d에 대한 값이 없어서 오류가 발생할 것으로 예상했지만, 다음과 같이 나왔습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> DefaultValues.create_list("Bob", 4, 3)
+{"Bob", 1, 4, 3}
+iex> DefaultValues.create_list("Bob", :ok, 4, 3)
+{"Bob", :ok, 4, 3}
+```
+
+엘릭서가 `do_something/3` 함수와 `do_something/4` 함수를 생성한 것으로 나타났습니다. `do_something/3` 함수는 필요한 매개변수만 가져와서 두 번째 매개변수를 기본값으로 하고 `do_something/4` 함수를 호출했습니다. 매우 흥미로웠습니다. 매개변수의 아무 곳에나 기본값을 넣은 다음 매개변수의 위치와 관계없이 필요한 매개변수만 전달할 수 있는 효과가 있습니다. 필수 매개변수가 먼저 채워집니다.
+
+엘릭서가 기본값을 가지고 호출하는 대체 함수를 생성한다는 사실을 알고 나니 이해가 됩니다. 선택적 매개변수가 어디에 있는지는 상관없습니다.
