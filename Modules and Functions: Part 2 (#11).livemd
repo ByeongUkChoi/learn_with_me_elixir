@@ -228,3 +228,9 @@ iex> String.split("This is a string")
 iex> length([1, 2, 3])
 3
 ```
+
+이 예제에서는 String 모듈에서 `upcase/1`과 `trim/1`만 가져왔습니다. import 구문 `upcase: 1`은 `upcase/1`에 해당합니다. 이제 가져온 두 함수를 모두 사용할 수 있었지만 가져오지 않은 `String` 모듈의 다른 함수인 `String.split/1`은 현재 네임스페이스에서 여전히 사용할 수 없습니다.
+
+`String`에서 특정 함수를 가져오면서 `String.length/1`을 가져오지 않았기 때문에 `length/1` 함수 이름 충돌을 피할 수 있습니다. 이런 식으로 함수를 가져오면 `upcase/1` 및 `trim/1` 함수의 출처도 명확해집니다.
+
+또한 `only:`와 같은 맥락으로 사용되지만 반대 효과가 있는 `except:`도 있습니다. 이 함수는 나열된 함수를 제외한 모든 함수를 가져옵니다.
