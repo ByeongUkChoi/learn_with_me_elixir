@@ -257,3 +257,27 @@ iex> String.upcase("This is a string")
 이 예제에서는 `String` 모듈을 `Bob`이라는 별칭으로 만들었습니다.
 
 `alias`를 사용하여 긴 네임스페이스를 간소화할 수 있습니다. `NameSpace1.Namespace2.Category.Subdivision.ExampleModule`과 같은 네임스페이스는 `ExampleModule`로 별칭을 지정할 수 있습니다. 이렇게 하면 해당 모듈의 함수를 현재 네임스페이스로 가져오지 않고도 해동 모듈의 함수를 훨씬 쉽게 참조할 수 있습니다.
+
+`as:` 없이 `alias`를 사용하는 경우 별칭은 모듈 이름의 마지막 부분으로 설정됩니다. 따라서 `as:`가 없는 `alias NameSpace1.Namespace2.Category.Subdivision.ExampleModule`는 마지막 점 다음에 오는 모듈 이름인 `ExampleModule`가 별칭으로 설정됩니다.
+
+alias와 import 모두 범위가 지정되므로 원하는 경우 파일 수준, 모듈 내부 또는 개별 함수 내부에 alias와 import를 넣을 수 있습니다. 함수 내에 포함된 alias나 import는 해당 함수 범위 내에서만 적용되며 같은 모듈의 다른 함수에서는 사용할 수 없습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule ExampleModule do
+	def atom_to_string_one(atom) do
+		Atom.to_string(atom)
+	end
+	
+	def atom_to_string_two(atom) do
+		import Atom, only: [to_string: 1]
+		to_string(atom)
+	end
+	
+	def atom_to_string_three(atom) do
+		alias Atom, as: Waffle
+		Waffle.to_string(atom)
+	end	
+end
+```
