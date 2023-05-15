@@ -301,3 +301,40 @@ end
 ```
 
 이 예제에서는 `@test_file_name`이라는 어트리뷰트를 정의하고 여기에 `"test_file.txt"`라는 값을 할당합니다. 이 어트리뷰트는 모듈 내 어디에서나 사용할 수 있습니다. 여기서는 이 속성을 상수처럼 사용합니다. 이 속성은 모듈 외부에서는 사용할 수 없는 것으로 보입니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> ExampleModule.test_file
+"test_file.txt"
+iex> ExampleModule.@test_file_name
+** (CompileError) iex:23: undefined function test_file_name/0
+
+```
+
+모듈 어트리뷰트는 재정의할 수 있으며 컴파일러는 코드를 읽을 때 현재 할당된 값을 사용합니다. 이는 또한 동일한 어트리뷰트를 문제없이 메타데이터 용도로 재사용할 수 있음을 의미합니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule ExampleModule do
+	@test_file_name "test_file.txt"
+	
+	def test_file() do
+		@test_file_name
+	end
+	
+	@test_file_name "another_test_file.txt"
+	
+	def second_test_file(), do: @test_file_name
+end
+```
+
+```
+iex> ExampleModule.test_file
+"test_file.txt"
+iex> ExampleModule.second_test_file
+"another_test_file.txt"
+```
+
+이 예제에서는 괄호를 사용하지 않고 함수를 호출하였습니다. 상수만 반환하는 함수는 (실제로 함수임에도 불구하고) 모듈 상수처럼 느껴지므로 괄호를 생략했습니다. 엘릭서는 그렇게 해도 괜찮습니다.
