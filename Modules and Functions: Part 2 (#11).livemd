@@ -381,3 +381,70 @@ end
 iex> c "math_operations.exs"
 [MathOperations]
 ```
+
+이제 모듈이 IEx에 로드되었고 함수를 호출할 수 있습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> MathOperations.add(10, 23)
+33
+iex> MathOperations.subtract(5, 15)
+-10
+iex> MathOperations.multiply(5, 3)
+15
+iex> MathOperations.divide(10, 3)
+3.3333333333333335
+iex> MathOperations.mod(8, 2)
+0
+iex> MathOperations.mod(8, 3)
+2
+iex> MathOperations.negate(9)
+-9
+iex> MathOperations.negate(-17)
+17
+iex> MathOperations.square(5)
+25
+iex> MathOperations.pi
+3.141592653589793
+iex> MathOperations.pi()
+3.141592653589793
+```
+
+훌륭합니다! 유용한 수학 연산이 포함된 모듈을 만들었습니다. 그다지 인상적이지는 않지만 엘릭서에 익숙해지는 데 좋은 연습이 되었습니다.
+
+또한 고차 함수를 만드는 연습을 해보고 싶어서 연산자 모듈을 만들게 되었습니다. 연산자 모듈의 함수는 하나 이상의 함수와 일부 데이터를 수신하고 해당 데이터를 가지고 해당 함수를 호출합니다.
+
+한 번 살펴보겠습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defmodule Operator do
+	#Takes some data and a function with one parameter and applies a function to that data
+	def apply(operation, data) do
+		operation.(data)
+	end
+
+	#Takes some data and a function with two parameters and applies a function to that data
+	def apply(operation, data1, data2) do
+		operation.(data1, data2)
+	end
+	
+	#Takes some data and two functions, the first function with one parameter and the second function with 
+	#one parameter and applies the first function to that data, with the second function fed the result
+	#of the first function. The result of that will be returned.
+	def apply_two(operation1, operation2, data) do
+		result = operation1.(data)
+		operation2.(result)
+	end
+	
+	#Takes some data and two functions, the first function with two parameters and the second function with 
+	#one parameter and applies the first function to that data, with the second function fed the result
+	#of the first function. The result of that will be returned.
+	def apply_two(operation1, operation2, data1, data2) do
+		result = operation1.(data1, data2)
+		operation2.(result)
+	end
+end
+```
