@@ -458,3 +458,45 @@ apply 함수는 단일 함수를 호출하여 어떤 데이터를 전달하고 �
 어떻게 Operator 모듈에서 점 표기법을 사용하여 전달된 함수를 호출하는지 살펴보세요. 이는 해당 함수가 매개변수에 바인딩되어 있고 익명함수이기 때문입니다. 매개변수가 기명 함수에 바인딩 될 수는 있지만 그 자체가 기명 함수는 아닐 수 있습니다.
 
 모듈을 IEx에 로드하고 MathOperations 모듈의 함수와 함께 사용해 보겠습니다. 이것은 더 간단한 함수를 결합하여 더 복잡한 작업을 수행할 수 있는 함수 구성의 예입니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> c "operator.exs"
+[Operator]
+iex> Operator.apply(&MathOperations.add/2, 4, 9)
+13
+iex> Operator.apply(&MathOperations.subtract/2, 4, 9)
+-5
+iex> Operator.apply(&MathOperations.multiply/2, 4, 9)
+36
+iex> Operator.apply(&MathOperations.divide/2, 4, 9)
+0.4444444444444444
+iex> Operator.apply(&MathOperations.mod/2, 9, 4)
+1
+iex> Operator.apply(&MathOperations.negate/1, 9)
+-9
+iex> Operator.apply(&MathOperations.square/1, 9)
+81
+iex> Operator.apply(&MathOperations.square/1, MathOperations.pi)
+9.869604401089358
+```
+
+apply 메서드에 함수를 전달하기 위해 캡처 연산자와 함수의 이름/애리티를 사용해야 하는 점에 주목하세요. 마지막에 square/1 함수를 전달하고 pi/0 함수를 호출하여 제곱할 값을 찾았습니다. 그 결과 PI가 제곱 되었습니다. `MathOperations.pi/0`의 반환하는 값이 아닌 함수를 전달하려면 캡처 연산자를 사용해야 했을 것입니다. 이것이 함수를 전달하는 것과 함수를 호출하고 그 결과를 전달하는 것의 문법 차입니다.
+
+여기에서도 두 버전의 apply 함수를 호출하고 있습니다. 매개변수가 3개인 것은 `Operator.apply/3`과 일치하고, 매개변수가 2개인 것은 `Operator.apply/2`와 일치합니다.
+
+이제 `apply_two` 함수를 사용해 보겠습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> Operator.apply_two(&MathOperations.negate/1, &MathOperations.square/1, 8)
+64
+iex> Operator.apply_two(&MathOperations.square/1, &MathOperations.negate/1, 8)
+-64
+iex> Operator.apply_two(&MathOperations.add/2, &MathOperations.square/1, 5, 2)
+49
+iex> Operator.apply_two(&MathOperations.multiply/2, &MathOperations.square/1, 5, 2)
+100
+```
