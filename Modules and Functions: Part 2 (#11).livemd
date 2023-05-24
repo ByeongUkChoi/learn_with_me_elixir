@@ -500,3 +500,45 @@ iex> Operator.apply_two(&MathOperations.add/2, &MathOperations.square/1, 5, 2)
 iex> Operator.apply_two(&MathOperations.multiply/2, &MathOperations.square/1, 5, 2)
 100
 ```
+
+* 첫 번째는 숫자 8을 부호를 반대로 바꿔 -8이 된 다음 제곱하여 64가 됩니다.
+* 두 번째는 연산 순서를 반대로 하여 8을 제곱하여 64가 된 다음 음수화 하여 -64가 되도록 했습니다.
+* 세 번째는 5와 2를 더하여 7을 얻은 다음 제곱합니다. 결과는 49입니다.
+* 네 번째는 5와 2를 곱하여 10을 구한 다음 제곱합니다. 결과는 100입니다.
+
+이 작은 프로젝트를 통해 많은 것을 배웠습니다. 다양한 컴파일 오류와 이러한 함수를 호출하려고 시도하는 동안 IEx에 나온 오류는 여기서 보여주지 않았습니다. 실제로 많은 오류가 있었지만, 많은 오류로 코드 예제를 복잡하게 만드는 것은 별로 도움이 되지 않을 것 같아서 편집했습니다.
+
+마지막 예제의 편집되지 않은 버전은 다음과 같습니다.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+iex> Operation.apply(fn (x, y) -> x - (y *2) end, 10, 3)
+** (UndefinedFunctionError) function Operation.apply/3 is undefined (module Operation is not available)
+    Operation.apply(#Function<12.99386804/2 in :erl_eval.expr/5>, 10, 3)
+iex> Operator.apply(fn (x, y) -> x - (y *2) end, 10, 3)
+4
+iex> Operator.apply(fn x -> x * (x + 1), 10, 3)
+** (SyntaxError) iex:69: unexpected token: ). The "fn" at line 69 is missing terminator "end"
+
+iex> Operator.apply(fn x -> x * (x + 1) end, 10, 3)
+** (BadArityError) #Function<6.99386804/1 in :erl_eval.expr/5> with arity 1 called with 2 arguments (10, 3)
+    projects/ElixirOperator/operator.exs:9: Operator.apply/3
+iex> Operator.apply(fn x -> x * (x + 1) end, 10)
+110
+iex> Operator.apply(&(&1 + (&2 * &1)), 10)
+** (BadArityError) #Function<12.99386804/2 in :erl_eval.expr/5> with arity 2 called with 1 argument (10)
+    projects/ElixirOperator/operator.exs:4: Operator.apply/2
+iex> Operator.apply(&(&1 + (&2 * &1)), 10, 3)
+40
+iex> Operator.apply(&(&1 + (&2 * &1)), &MathOperations.negate/1, 10, 3)
+** (UndefinedFunctionError) function Operator.apply/4 is undefined or private. Did you mean one of:
+
+      * apply/2
+      * apply/3
+
+    Operator.apply(#Function<12.99386804/2 in :erl_eval.expr/5>, &MathOperations.negate/1, 10, 3)
+iex> Operator.apply_two(&(&1 + (&2 * &1)), &MathOperations.negate/1, 10, 3)
+-40
+iex>
+```
